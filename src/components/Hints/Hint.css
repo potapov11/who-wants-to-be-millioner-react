@@ -1,0 +1,13 @@
+.hints {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.hints__fifity {
+	border-radius: 30px;
+	background: radial-gradient(9487.22% 68.25% at 50% 78%, rgb(22, 79, 127) 40%, rgb(101, 138, 165) 79.006%, rgb(99 70 70 / 0%) 100%, rgb(0 0 0) 100%);
+
+	font-size: 24px;
+	color: goldenrod;
+	padding: 10px 20px;
+}

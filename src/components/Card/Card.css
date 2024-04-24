@@ -1,0 +1,54 @@
+.card {
+	width: 740px;
+	padding: 10px 5px;
+	margin: 0 auto;
+	margin-top: 30px;
+	border-radius: 25px;
+
+	h3 {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-image: url(../../img/btn-question.svg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		height: 81px;
+		color: white;
+	}
+
+	ul {
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 10px;
+
+		li {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 50px;
+			line-height: -22px;
+			/* padding-top: 10px; */
+			/* padding-bottom: 10px; */
+			font-size: 20px;
+			background-image: url(../../img/button.svg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+}
+
+li.red {
+	background: radial-gradient(3024% 48% at 50% 50%, rgb(130, 16, 16), rgba(206, 20, 20, 0.9) 99.896%)
+		/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+li.gold {
+	background-image: url(../../img/gold-vector.png);
+}

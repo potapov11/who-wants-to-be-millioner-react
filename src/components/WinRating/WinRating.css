@@ -1,0 +1,15 @@
+.win-rating-list {
+	display: flex;
+	flex-direction: column-reverse;
+
+	position: absolute;
+	right: 50px;
+	color: white;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.bck-gold {
+	background-color: goldenrod;
+}
