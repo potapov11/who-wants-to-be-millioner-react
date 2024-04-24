@@ -10,4 +10,10 @@
 	font-size: 24px;
 	color: goldenrod;
 	padding: 10px 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.hints__fifity:hover {
+	transform: scale(1.1);
 }

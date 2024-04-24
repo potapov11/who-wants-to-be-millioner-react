@@ -44,11 +44,49 @@
 	}
 }
 
+/* li.gold {
+	background-image: url(../../img/btn-gold.png) !important;
+} */
+
+/* @keyframes blink {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
 li.red {
-	background: radial-gradient(3024% 48% at 50% 50%, rgb(130, 16, 16), rgba(206, 20, 20, 0.9) 99.896%)
-		/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+	background-image: url(../../img/btn-red.png) !important;
+	animation: blink 1s 20;
 }
 
 li.gold {
-	background-image: url(../../img/gold-vector.png);
+	background-image: url(../../img/btn-gold.png) !important;
+	animation: blink 1s 20;
+} */
+
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+li.red {
+	background-image: url(../../img/btn-red.png) !important;
+	animation: blink 0.3s infinite; /* Blink 20 times per second */
+}
+
+li.gold {
+	background-image: url(../../img/btn-gold.png) !important;
+	animation: blink 0.3s infinite; /* Blink 20 times per second */
 }

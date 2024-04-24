@@ -44,7 +44,7 @@ function App() {
 			setTimeout(() => {
 				setNumberQuestion((prevState) => prevState + 1);
 				setDisabledAll(false);
-			}, 20000);
+			}, 1000);
 			setGoldItem(item);
 		} else {
 			setRedItem(item);
