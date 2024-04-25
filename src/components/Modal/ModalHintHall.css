@@ -1,1 +1,36 @@
-func
+.modal {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding: 40px;
+  transform: translate(-50%, 0);
+  width: 400px;
+  height: 300px;
+  border: 2px solid silver;
+  background-color: #040c14;
+  color: white;
+}
+
+.modal__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hall-hint {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 10;
+}
+
+.hall-hint__item {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.hall-hint__inner {
+  width: 30px;
+  background-color: aqua;
+  transition: height 2s ease !important;
+}
