@@ -3,8 +3,6 @@ import { playFiftySound } from "../Audio/Audio";
 import React, { useState } from "react";
 
 function Hints({ hintFifty, fifty }) {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="hints">
       <button

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TypeIt from "typeit-react";
 import "./ModalHintHall.css";
 
-function ModalHintHall({ arrQuestions, numberQuestion, isOpen }) {
+function ModalHintHall({ arrQuestions, numberQuestion }) {
   const rightAnswer = arrQuestions[numberQuestion].correctAnswer;
   const min = 50;
   const max = 150;
@@ -50,7 +50,7 @@ function ModalHintHall({ arrQuestions, numberQuestion, isOpen }) {
 
   let resArr = createResultArr();
 
-  return isOpen ? (
+  return (
     <div className="modal">
       <div className="modal__inner">
         <TypeIt>Зал считает, что правильный ответ...</TypeIt>
@@ -72,7 +72,7 @@ function ModalHintHall({ arrQuestions, numberQuestion, isOpen }) {
         </div>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default ModalHintHall;
