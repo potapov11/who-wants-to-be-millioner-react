@@ -2,7 +2,7 @@ import "./Hint.css";
 import { playFiftySound } from "../Audio/Audio";
 import React, { useState } from "react";
 
-function Hints({ hintFifty, fifty }) {
+function Hints({ hintFifty, fifty, changeModal, disabled }) {
   return (
     <div className="hints">
       <button
@@ -14,7 +14,11 @@ function Hints({ hintFifty, fifty }) {
       >
         50 на 50
       </button>
-      <button className="hall-help">Помощь зала</button>
+
+      <button
+        className={!disabled ? "hall-help" : "hall-help disabled"}
+        onClick={() => changeModal()}
+      ></button>
     </div>
   );
 }

@@ -18,6 +18,21 @@ function App() {
     numberQuestion < 4 ? easyQuestionsArr : hardQuestionsArr
   );
   const [fifty, setFifty] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [disabled, setIsDisabled] = useState("");
+
+  function changeModal() {
+    setOpenModal(!openModal);
+    console.log(openModal, "...openModal");
+  }
+
+  function changeClass() {
+    setIsDisabled("disabled");
+  }
+
+  function hideModal() {
+    setOpenModal(!openModal);
+  }
 
   useEffect(() => {
     setArrQuestion(numberQuestion < 4 ? easyQuestionsArr : hardQuestionsArr);
@@ -65,8 +80,15 @@ function App() {
           <ModalHintHall
             arrQuestions={arrQuestions}
             numberQuestion={numberQuestion}
+            openModal={openModal}
           />
-          <Hints hintFifty={hintFifty} fifty={fifty} />
+          <Hints
+            hintFifty={hintFifty}
+            fifty={fifty}
+            changeModal={changeModal}
+            openModal={openModal}
+            disabled={disabled}
+          />
           <WinRating numberQuestion={numberQuestion} />
           <Logo />
           <span>count {numberQuestion}</span>
@@ -76,6 +98,8 @@ function App() {
             goldItem={goldItem}
             checkIsCorrect={checkIsCorrect}
             numberQuestion={numberQuestion}
+            hideModal={hideModal}
+            changeClass={changeClass}
           />
         </div>
       </div>
