@@ -19,6 +19,11 @@ function Hints({ hintFifty, fifty, changeModal, disabled }) {
         className={!disabled ? "hall-help" : "hall-help disabled"}
         onClick={() => changeModal()}
       ></button>
+
+      <button
+        className={"friend-help"}
+        // onClick={() => changeModal()}
+      ></button>
     </div>
   );
 }

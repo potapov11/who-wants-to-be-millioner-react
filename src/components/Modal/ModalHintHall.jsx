@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TypeIt from "typeit-react";
 import "./ModalHintHall.css";
 
@@ -10,6 +10,7 @@ function ModalHintHall({ arrQuestions, numberQuestion, openModal }) {
   const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+
   function createAndReturnValues() {
     let arrayHallHint = [];
 
@@ -49,27 +50,40 @@ function ModalHintHall({ arrQuestions, numberQuestion, openModal }) {
   }
 
   let resArr = createResultArr();
+  const [showHallHint, setShowHallHint] = React.useState(false);
+
+  React.useEffect(() => {
+    if (openModal) {
+      setTimeout(() => {
+        setShowHallHint(true);
+      }, 3000);
+    } else {
+      setShowHallHint(false);
+    }
+  }, [openModal]);
 
   return openModal ? (
     <div className="modal">
       <div className="modal__inner">
         <TypeIt>Зал считает, что правильный ответ...</TypeIt>
-        <div className="hall-hint">
-          {resArr.map((resItem) => {
-            return (
-              <div className="hall-hint__item" key={new Date().getDate}>
-                {resItem.letter}
-                <div
-                  className="hall-hint__inner"
-                  style={{
-                    transition: "height 2s ease",
-                    height: `${resItem.height}px`,
-                  }}
-                ></div>
-              </div>
-            );
-          })}
-        </div>
+        {showHallHint && (
+          <div className="hall-hint">
+            {resArr.map((resItem) => {
+              return (
+                <div className="hall-hint__item" key={new Date().getDate}>
+                  {resItem.letter}
+                  <div
+                    className="hall-hint__inner"
+                    style={{
+                      transition: "height 2s ease",
+                      height: `${resItem.height}px`,
+                    }}
+                  ></div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   ) : null;

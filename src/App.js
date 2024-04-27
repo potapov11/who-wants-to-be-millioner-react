@@ -8,6 +8,7 @@ import Hints from "./components/Hints/Hint.jsx";
 import WinRating from "./components/WinRating/WinRating.jsx";
 import ModalHintHall from "./components/Modal/ModalHintHall.jsx";
 import { playSound } from "./components/Audio/Audio.jsx";
+import ModalFriendCall from "./components/ModalFriendCall/ModalFriendCall.jsx";
 
 function App() {
   const [disabledAll, setDisabledAll] = useState(false);
@@ -19,6 +20,7 @@ function App() {
   );
   const [fifty, setFifty] = useState(true);
   const [openModal, setOpenModal] = useState(false);
+  const [openModalFriend, setOpenModalFriend] = useState(false);
   const [disabled, setIsDisabled] = useState("");
 
   function changeModal() {
@@ -31,7 +33,11 @@ function App() {
   }
 
   function hideModal() {
-    setOpenModal(!openModal);
+    setOpenModal(false);
+  }
+
+  function hideModalFriend() {
+    setOpenModalFriend(false);
   }
 
   useEffect(() => {
@@ -81,6 +87,11 @@ function App() {
             arrQuestions={arrQuestions}
             numberQuestion={numberQuestion}
             openModal={openModal}
+          />
+          <ModalFriendCall
+            arrQuestions={arrQuestions}
+            numberQuestion={numberQuestion}
+            openModalFriend={openModalFriend}
           />
           <Hints
             hintFifty={hintFifty}
