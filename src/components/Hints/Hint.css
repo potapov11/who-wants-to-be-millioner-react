@@ -1,11 +1,27 @@
 .hints {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
 }
 
 .hints__fifity {
+	height: 52px;
+	width: 70px;
+	margin-left: 20px;
+	border-radius: 30px;
+	background: radial-gradient(9487.22% 68.25% at 50% 78%, rgb(22, 79, 127) 40%, rgb(101, 138, 165) 79.006%, rgb(99 70 70 / 0%) 100%, rgb(0 0 0) 100%);
+	font-size: 24px;
+	color: goldenrod;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	background-image: url('../../img/50hint.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* .hints__fifity {
   border-radius: 30px;
   background: radial-gradient(
     9487.22% 68.25% at 50% 78%,
@@ -20,30 +36,24 @@
   padding: 10px 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-}
+} */
 
 .hints__fifity:hover {
-  transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .hall-help {
-  height: 52px;
-  width: 70px;
-  margin-left: 20px;
-  border-radius: 30px;
-  background: radial-gradient(
-    9487.22% 68.25% at 50% 78%,
-    rgb(22, 79, 127) 40%,
-    rgb(101, 138, 165) 79.006%,
-    rgb(99 70 70 / 0%) 100%,
-    rgb(0 0 0) 100%
-  );
-  font-size: 24px;
-  color: goldenrod;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-image: url("../../img/telephone.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+	height: 52px;
+	width: 70px;
+	margin-left: 20px;
+	border-radius: 30px;
+	background: radial-gradient(9487.22% 68.25% at 50% 78%, rgb(22, 79, 127) 40%, rgb(101, 138, 165) 79.006%, rgb(99 70 70 / 0%) 100%, rgb(0 0 0) 100%);
+	font-size: 24px;
+	color: goldenrod;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	background-image: url('../../img/telephone.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
