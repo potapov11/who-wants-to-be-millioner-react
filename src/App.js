@@ -7,7 +7,7 @@ import Logo from './components/Logo/Logo.jsx';
 import Hints from './components/Hints/Hint.jsx';
 import WinRating from './components/WinRating/WinRating.jsx';
 import ModalHintHall from './components/Modal/ModalHintHall.jsx';
-import { playSound } from './components/Audio/Audio.jsx';
+import { playSound, stopPlayPollHintSound, stopPlayFriendHintSound } from './components/Audio/Audio.jsx';
 import ModalFriendCall from './components/ModalFriendCall/ModalFriendCall.jsx';
 
 function App() {
@@ -36,10 +36,12 @@ function App() {
 		if (openModal) {
 			console.log('here openModal');
 			setOpenModal(false);
+			stopPlayPollHintSound();
 		}
 		if (openModalFriend) {
 			console.log('here OpenModalFriend');
 			setOpenModalFriend(false);
+			stopPlayFriendHintSound();
 		}
 	}
 

@@ -53,6 +53,10 @@
 	background-size: cover;
 }
 
+.friend-help:hover {
+	transform: scale(1.1);
+}
+
 .friend-hint {
 	margin-top: 30px;
 	font-size: 30px;

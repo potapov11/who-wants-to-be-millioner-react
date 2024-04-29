@@ -17,7 +17,6 @@ function Card({ arrQuestions, redItem, goldItem, checkIsCorrect, numberQuestion,
 							onClick={(e, index) => {
 								checkIsCorrect(e.target.textContent, item);
 								hideModal();
-								// changeClass();
 							}}>
 							{item}
 						</li>

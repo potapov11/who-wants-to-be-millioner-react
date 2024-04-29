@@ -1,56 +1,52 @@
 .card {
-  width: 740px;
-  padding: 10px 5px;
-  margin: 0 auto;
-  margin-top: 30px;
-  border-radius: 25px;
+	width: 740px;
+	padding: 10px 5px;
+	margin: 0 auto;
+	margin-top: 30px;
+	border-radius: 25px;
 
-  h3 {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-image: url(../../img/btn-question.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 81px;
-    color: white;
-  }
+	h3 {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-left: 20px;
+		padding-right: 20px;
+		background-image: url(../../img/btn-question.svg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		height: 81px;
+		color: white;
+	}
 
-  ul {
-    padding: 0;
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+	ul {
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 10px;
 
-    li {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 50px;
-      line-height: -22px;
-      /* padding-top: 10px; */
-      /* padding-bottom: 10px; */
-      font-size: 20px;
-      background-image: url(../../img/button.svg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: #fff;
-      cursor: pointer;
-    }
-  }
+		li {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 50px;
+			line-height: -22px;
+			/* padding-top: 10px; */
+			/* padding-bottom: 10px; */
+			font-size: 20px;
+			background-image: url(../../img/button.svg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			color: #fff;
+			cursor: pointer;
+		}
+	}
 }
 
-/* li.gold {
-	background-image: url(../../img/btn-gold.png) !important;
-} */
-
-/* @keyframes blink {
+@keyframes blink {
 	0% {
 		opacity: 0;
 	}
@@ -61,34 +57,35 @@
 		opacity: 0;
 	}
 }
+
 li.red {
 	background-image: url(../../img/btn-red.png) !important;
-	animation: blink 1s 20;
+	animation: blink 0.3s infinite; /* Blink 20 times per second */
 }
 
 li.gold {
 	background-image: url(../../img/btn-gold.png) !important;
-	animation: blink 1s 20;
-} */
-
-@keyframes blink {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+	animation: blink 0.3s infinite; /* Blink 20 times per second */
 }
 
-li.red {
-  background-image: url(../../img/btn-red.png) !important;
-  animation: blink 0.3s infinite; /* Blink 20 times per second */
-}
+@media (max-width: 800px) {
+	.card {
+		width: 100%;
+		padding-left: 30px;
+		padding-right: 30px;
 
-li.gold {
-  background-image: url(../../img/btn-gold.png) !important;
-  animation: blink 0.3s infinite; /* Blink 20 times per second */
+		h3 {
+			background-size: contain;
+			font-size: 18px;
+		}
+
+		ul {
+			grid-template-columns: initial;
+
+			li {
+				background-position: center;
+				background-size: contain;
+			}
+		}
+	}
 }

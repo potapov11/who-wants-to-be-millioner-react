@@ -1,5 +1,5 @@
 import './Hint.css';
-import { playFiftySound } from '../Audio/Audio';
+import { playFiftySound, playPollHintSound, playFriendHintSound } from '../Audio/Audio';
 import React, { useState } from 'react';
 
 function Hints({ hintFifty, fifty, changeModal, disabled, hideModalFriend, changeClass }) {
@@ -17,6 +17,7 @@ function Hints({ hintFifty, fifty, changeModal, disabled, hideModalFriend, chang
 				className={!disabled ? 'hall-help' : 'hall-help disabled'}
 				onClick={(e) => {
 					changeModal();
+					playPollHintSound();
 					changeClass(e.target);
 				}}></button>
 
@@ -24,6 +25,7 @@ function Hints({ hintFifty, fifty, changeModal, disabled, hideModalFriend, chang
 				className={!disabled ? 'friend-help' : 'friend-help disabled'}
 				onClick={(e) => {
 					hideModalFriend();
+					playFriendHintSound();
 					changeClass(e.target);
 				}}></button>
 		</div>

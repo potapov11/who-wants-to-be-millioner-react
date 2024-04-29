@@ -1,7 +1,11 @@
 import correctAnswerAudio from '../../assets/audio/correctAudio.mp3';
 import fiftyAudio from '../../assets/audio/auido-50-50.mp3';
+import pollHintAudio from '../../assets/audio/audio-pollhelp.mp3';
+import friendHintAudio from '../../assets/audio/audio-callFriend.mp3';
 const audio = new Audio(correctAnswerAudio);
 const fiftySound = new Audio(fiftyAudio);
+const pollHintSound = new Audio(pollHintAudio);
+const friendHintSound = new Audio(friendHintAudio);
 
 const playSound = () => {
 	audio.play();
@@ -11,4 +15,20 @@ const playFiftySound = () => {
 	fiftySound.play();
 };
 
-export { playFiftySound, playSound };
+const playPollHintSound = () => {
+	pollHintSound.play();
+};
+const stopPlayPollHintSound = () => {
+	pollHintSound.currentTime = 0;
+	pollHintSound.pause();
+};
+
+const playFriendHintSound = () => {
+	friendHintSound.play();
+};
+const stopPlayFriendHintSound = () => {
+	friendHintSound.currentTime = 0;
+	friendHintSound.pause();
+};
+
+export { playFiftySound, playSound, playPollHintSound, playFriendHintSound, stopPlayPollHintSound, stopPlayFriendHintSound };
