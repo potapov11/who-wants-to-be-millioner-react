@@ -89,3 +89,12 @@ li.gold {
 		}
 	}
 }
+
+@media (max-width: 500px) {
+	.card {
+		h3 {
+			background-size: contain;
+			font-size: 13px;
+		}
+	}
+}
