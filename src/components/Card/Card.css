@@ -42,6 +42,11 @@
 			background-size: cover;
 			color: #fff;
 			cursor: pointer;
+			transition: all 0.8s ease;
+		}
+
+		li:hover {
+			font-size: 21px;
 		}
 	}
 }
