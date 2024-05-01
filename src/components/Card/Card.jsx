@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { globalContext } from '../../App';
 import './Card.css';
 
-function Card({ arrQuestions, redItem, goldItem, checkIsCorrect, numberQuestion, hideModal, changeClass }) {
-	console.log(arrQuestions, '...arrquestions in card');
+function Card({ redItem, goldItem, checkIsCorrect, hideModal }) {
+	console.log(globalContext, 'globalContext');
+
+	const { arrQuestions, numberQuestion } = useContext(globalContext);
 
 	return (
 		<div className="card">

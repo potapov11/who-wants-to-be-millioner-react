@@ -1,0 +1,26 @@
+.arrow-music {
+	position: absolute;
+	left: 250px;
+	top: 50px;
+	color: white;
+	height: 52px;
+	width: 52px;
+	margin-left: 20px;
+	border-radius: 30px;
+	background: radial-gradient(9487.22% 68.25% at 50% 78%, rgb(22, 79, 127) 40%, rgb(101, 138, 165) 79.006%, rgb(99 70 70 / 0%) 100%, rgb(0 0 0) 100%);
+	font-size: 24px;
+	color: goldenrod;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.arrow-music-play {
+	background-image: url('../../img/icon-play.png');
+}
+
+.arrow-music-stop {
+	background-image: url('../../img/icon-stop.png');
+}

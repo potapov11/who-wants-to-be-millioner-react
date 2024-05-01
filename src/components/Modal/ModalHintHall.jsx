@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import TypeIt from 'typeit-react';
+import { globalContext } from '../../App';
 import './ModalHintHall.css';
 
-function ModalHintHall({ arrQuestions, numberQuestion, openModal }) {
+function ModalHintHall() {
+	const { arrQuestions, numberQuestion, openModal } = useContext(globalContext);
+
 	const rightAnswer = arrQuestions[numberQuestion].correctAnswer;
 	const min = 50;
 	const max = 150;

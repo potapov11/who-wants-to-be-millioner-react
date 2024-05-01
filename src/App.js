@@ -1,9 +1,10 @@
 import './App.css';
-import { useState, useRef, useEffect, useContext, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import hardQuestionsArr from './components/HardQuestionsArr';
 import easyQuestionsArr from './components/EasyQuestionArr';
 import Card from './components/Card/Card.jsx';
 import Logo from './components/Logo/Logo.jsx';
+import ArrowMusic from './components/ArrowMuisc/ArowMusic.jsx';
 import Hints from './components/Hints/Hint.jsx';
 import WinRating from './components/WinRating/WinRating.jsx';
 import ModalHintHall from './components/Modal/ModalHintHall.jsx';
@@ -24,23 +25,18 @@ function App() {
 
 	function changeModal() {
 		setOpenModal(!openModal);
-		console.log(openModal, '...openModal');
 	}
 
 	function changeClass(e) {
-		console.log(e);
 		e.classList.add('disabled');
-		// setIsDisabled('disabled');
 	}
 
 	function hideModal() {
 		if (openModal) {
-			console.log('here openModal');
 			setOpenModal(false);
 			stopPlayPollHintSound();
 		}
 		if (openModalFriend) {
-			console.log('here OpenModalFriend');
 			setOpenModalFriend(false);
 			stopPlayFriendHintSound();
 		}
@@ -82,25 +78,25 @@ function App() {
 			setGoldItem(item);
 		} else {
 			setRedItem(item);
-			alert('вы проиграли');
-			window.location.reload();
+			setTimeout(() => {
+				window.location.reload();
+			}, 3000);
 		}
-
-		console.log(numberQuestion, '..numberQuestion');
 	}
 
 	return (
-		<globalContext.Provider value={{}}>
+		<globalContext.Provider value={{ numberQuestion, arrQuestions, openModal }}>
 			<div className="App">
 				<div className={!disabledAll ? 'container' : 'container disabled-all'}>
 					<div className="block">
-						<ModalHintHall arrQuestions={arrQuestions} numberQuestion={numberQuestion} openModal={openModal} />
-						<ModalFriendCall arrQuestions={arrQuestions} numberQuestion={numberQuestion} openModalFriend={openModalFriend} />
+						<ArrowMusic />
+						<ModalHintHall />
+						<ModalFriendCall openModalFriend={openModalFriend} />
 						<Hints hintFifty={hintFifty} fifty={fifty} changeModal={changeModal} changeClass={changeClass} hideModalFriend={hideModalFriend} openModal={openModal} disabled={disabled} />
-						<WinRating numberQuestion={numberQuestion} />
+						<WinRating />
 						<Logo />
-						<span>count {numberQuestion}</span>
-						<Card arrQuestions={arrQuestions} redItem={redItem} goldItem={goldItem} checkIsCorrect={checkIsCorrect} numberQuestion={numberQuestion} hideModal={hideModal} changeClass={changeClass} />
+						{/* <span>count {numberQuestion}</span> */}
+						<Card redItem={redItem} goldItem={goldItem} checkIsCorrect={checkIsCorrect} hideModal={hideModal} />
 					</div>
 				</div>
 			</div>

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TypeIt from 'typeit-react';
+import { globalContext } from '../../App';
 import './ModalFriendCall.css';
 
-function ModalFriendCall({ arrQuestions, numberQuestion, openModalFriend }) {
+function ModalFriendCall({ openModalFriend }) {
 	const [showFriendHint, setShowFriendHint] = useState(false);
+	const { arrQuestions, numberQuestion } = useContext(globalContext);
 
 	useEffect(() => {
 		if (openModalFriend) {

@@ -1,6 +1,6 @@
-import './Hint.css';
+import React from 'react';
 import { playFiftySound, playPollHintSound, playFriendHintSound } from '../Audio/Audio';
-import React, { useState } from 'react';
+import './Hint.css';
 
 function Hints({ hintFifty, fifty, changeModal, disabled, hideModalFriend, changeClass }) {
 	return (
