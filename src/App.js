@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext, createContext } from 'react';
 import hardQuestionsArr from './components/HardQuestionsArr';
 import easyQuestionsArr from './components/EasyQuestionArr';
 import Card from './components/Card/Card.jsx';
@@ -9,6 +9,7 @@ import WinRating from './components/WinRating/WinRating.jsx';
 import ModalHintHall from './components/Modal/ModalHintHall.jsx';
 import { playSound, stopPlayPollHintSound, stopPlayFriendHintSound } from './components/Audio/Audio.jsx';
 import ModalFriendCall from './components/ModalFriendCall/ModalFriendCall.jsx';
+export const globalContext = createContext();
 
 function App() {
 	const [disabledAll, setDisabledAll] = useState(false);
@@ -89,19 +90,21 @@ function App() {
 	}
 
 	return (
-		<div className="App">
-			<div className={!disabledAll ? 'container' : 'container disabled-all'}>
-				<div className="block">
-					<ModalHintHall arrQuestions={arrQuestions} numberQuestion={numberQuestion} openModal={openModal} />
-					<ModalFriendCall arrQuestions={arrQuestions} numberQuestion={numberQuestion} openModalFriend={openModalFriend} />
-					<Hints hintFifty={hintFifty} fifty={fifty} changeModal={changeModal} changeClass={changeClass} hideModalFriend={hideModalFriend} openModal={openModal} disabled={disabled} />
-					<WinRating numberQuestion={numberQuestion} />
-					<Logo />
-					<span>count {numberQuestion}</span>
-					<Card arrQuestions={arrQuestions} redItem={redItem} goldItem={goldItem} checkIsCorrect={checkIsCorrect} numberQuestion={numberQuestion} hideModal={hideModal} changeClass={changeClass} />
+		<globalContext.Provider value={{}}>
+			<div className="App">
+				<div className={!disabledAll ? 'container' : 'container disabled-all'}>
+					<div className="block">
+						<ModalHintHall arrQuestions={arrQuestions} numberQuestion={numberQuestion} openModal={openModal} />
+						<ModalFriendCall arrQuestions={arrQuestions} numberQuestion={numberQuestion} openModalFriend={openModalFriend} />
+						<Hints hintFifty={hintFifty} fifty={fifty} changeModal={changeModal} changeClass={changeClass} hideModalFriend={hideModalFriend} openModal={openModal} disabled={disabled} />
+						<WinRating numberQuestion={numberQuestion} />
+						<Logo />
+						<span>count {numberQuestion}</span>
+						<Card arrQuestions={arrQuestions} redItem={redItem} goldItem={goldItem} checkIsCorrect={checkIsCorrect} numberQuestion={numberQuestion} hideModal={hideModal} changeClass={changeClass} />
+					</div>
 				</div>
 			</div>
-		</div>
+		</globalContext.Provider>
 	);
 }
 
