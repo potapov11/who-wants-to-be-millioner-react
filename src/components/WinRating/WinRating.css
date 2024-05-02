@@ -1,13 +1,15 @@
 .win-rating-list {
   display: flex;
   flex-direction: column-reverse;
-
-  position: absolute;
-  right: 250px;
   color: white;
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+.win-wrapper {
+  position: absolute;
+  right: 250px;
 }
 
 .bck-gold {
@@ -15,7 +17,7 @@
 }
 
 @media (max-width: 1023px) {
-  .win-rating-list {
+  .win-wrapper {
     top: 10px;
     right: 50px;
     font-size: 15px;
@@ -23,12 +25,16 @@
 }
 
 @media (max-width: 500px) {
-  .win-rating-list {
-    top: 300px;
+  .win-wrapper {
+    top: 290px;
     /* right: 20px; */
     left: 50%;
     transform: translate(-50%, 0);
-    height: 20px;
+    height: 30px;
     overflow: hidden;
+  }
+
+  .win-rating-list {
+    flex-direction: column;
   }
 }
