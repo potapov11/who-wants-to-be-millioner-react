@@ -10,9 +10,11 @@ import WinRating from './components/WinRating/WinRating.jsx';
 import ModalHintHall from './components/Modal/ModalHintHall.jsx';
 import { playSound, stopPlayPollHintSound, stopPlayFriendHintSound } from './components/Audio/Audio.jsx';
 import ModalFriendCall from './components/ModalFriendCall/ModalFriendCall.jsx';
+import IntroModalInfo from './components/IntroModalInfo/IntroModalInfo.jsx';
 export const globalContext = createContext();
 
 function App() {
+	const [isOpenIntro, setOpenIntro] = useState(true);
 	const [disabledAll, setDisabledAll] = useState(false);
 	const [numberQuestion, setNumberQuestion] = useState(0);
 	const [redItem, setRedItem] = useState('');
@@ -89,14 +91,20 @@ function App() {
 			<div className="App">
 				<div className={!disabledAll ? 'container' : 'container disabled-all'}>
 					<div className="block">
-						<ArrowMusic />
-						<ModalHintHall />
-						<ModalFriendCall openModalFriend={openModalFriend} />
-						<Hints hintFifty={hintFifty} fifty={fifty} changeModal={changeModal} changeClass={changeClass} hideModalFriend={hideModalFriend} openModal={openModal} disabled={disabled} />
-						<WinRating />
-						<Logo />
-						{/* <span>count {numberQuestion}</span> */}
-						<Card redItem={redItem} goldItem={goldItem} checkIsCorrect={checkIsCorrect} hideModal={hideModal} />
+						{isOpenIntro ? (
+							<IntroModalInfo />
+						) : (
+							<div>
+								<ArrowMusic />
+								<ModalHintHall />
+								<ModalFriendCall openModalFriend={openModalFriend} />
+								<Hints hintFifty={hintFifty} fifty={fifty} changeModal={changeModal} changeClass={changeClass} hideModalFriend={hideModalFriend} openModal={openModal} disabled={disabled} />
+								<WinRating />
+								<Logo />
+								{/* <span>count {numberQuestion}</span> */}
+								<Card redItem={redItem} goldItem={goldItem} checkIsCorrect={checkIsCorrect} hideModal={hideModal} />
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
