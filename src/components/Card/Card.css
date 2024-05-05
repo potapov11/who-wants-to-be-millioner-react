@@ -76,8 +76,8 @@ li.gold {
 @media (max-width: 800px) {
 	.card {
 		width: 100%;
-		padding-left: 30px;
-		padding-right: 30px;
+		padding-left: 24px;
+		padding-right: 24px;
 
 		h3 {
 			background-size: contain;
@@ -88,6 +88,7 @@ li.gold {
 			grid-template-columns: initial;
 
 			li {
+				font-size: 17px;
 				background-position: center;
 				background-size: contain;
 			}

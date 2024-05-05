@@ -50,6 +50,18 @@
 	top: 380px;
 }
 
+.intro-arrow {
+	position: relative;
+	top: 445px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.intro-arrow .intro-modal__text {
+	margin-top: 10px;
+}
+
 .button-continue {
 	position: fixed;
 	bottom: 100px;
@@ -81,6 +93,10 @@
 .video {
 	width: 100%;
 	height: auto;
+}
+
+img.img-arrow {
+	width: 10%;
 }
 
 @keyframes fromOpacity {

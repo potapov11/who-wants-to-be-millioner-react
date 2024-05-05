@@ -12,3 +12,9 @@
 	margin: 0 auto;
 	margin-bottom: 30px;
 }
+
+@media (max-width: 800px) {
+	.modal-lose .intro-modal__text {
+		width: 80%;
+	}
+}

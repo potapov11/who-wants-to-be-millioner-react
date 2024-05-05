@@ -3,6 +3,7 @@ import { globalContext } from '../../App';
 
 import './IntroModalInfo.css';
 import hints from '../../img/hints.png';
+import imgArrow from '../../img/icon-play.png';
 import introVideo from '../../assets/video/millioner-intro.mp4';
 
 function IntroModalInfo({ changeOpenIntro }) {
@@ -17,10 +18,11 @@ function IntroModalInfo({ changeOpenIntro }) {
 	const TEXT_HELLO_REF = useRef(null);
 	const TEXT_SOUND_REF = useRef(null);
 	const HINTS_TEXT_REF = useRef(null);
+	const ARROW_TEXT_REF = useRef(null);
 	const BUTTON_CONTINUE_REF = useRef(null);
 
 	let index = 0;
-	const refs = [TEXT_HELLO_REF, TEXT_SOUND_REF, HINTS_TEXT_REF, BUTTON_CONTINUE_REF];
+	const refs = [TEXT_HELLO_REF, TEXT_SOUND_REF, HINTS_TEXT_REF, ARROW_TEXT_REF, BUTTON_CONTINUE_REF];
 
 	function showContent() {
 		if (index < refs.length) {
@@ -76,7 +78,13 @@ function IntroModalInfo({ changeOpenIntro }) {
 							<img src={hints} alt="hints" />
 							<p className="intro-modal__text">Вы можете воспользоваться подсказками</p>
 						</div>
-
+						<div className="intro-arrow hide" ref={ARROW_TEXT_REF}>
+							<img className="img-arrow" src={imgArrow} alt="hints" />
+							<p className="intro-modal__text">
+								Нажатием на эту кнопку <br />
+								включается фоновая музыка
+							</p>
+						</div>
 						<button className="button-continue hide" onClick={() => setVideo(true)} ref={BUTTON_CONTINUE_REF}>
 							Продолжить
 						</button>
