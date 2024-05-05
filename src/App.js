@@ -14,7 +14,7 @@ import IntroModalInfo from './components/IntroModalInfo/IntroModalInfo.jsx';
 export const globalContext = createContext();
 
 function App() {
-	const [isOpenIntro, setOpenIntro] = useState(true);
+	const [isOpenIntro, setOpenIntro] = useState(true ? !sessionStorage.getItem('intro') : false);
 	const [disabledAll, setDisabledAll] = useState(false);
 	const [numberQuestion, setNumberQuestion] = useState(0);
 	const [redItem, setRedItem] = useState('');
@@ -24,9 +24,17 @@ function App() {
 	const [openModal, setOpenModal] = useState(false);
 	const [openModalFriend, setOpenModalFriend] = useState(false);
 	const [disabled, setIsDisabled] = useState('');
+	const [intro, setIntro] = useState(sessionStorage.getItem('intro') || false);
+
+	console.log(isOpenIntro);
 
 	function changeModal() {
 		setOpenModal(!openModal);
+	}
+
+	function changeOpenIntro() {
+		setOpenIntro(false);
+		sessionStorage.setItem('intro', false);
 	}
 
 	function changeClass(e) {
@@ -92,7 +100,7 @@ function App() {
 				<div className={!disabledAll ? 'container' : 'container disabled-all'}>
 					<div className="block">
 						{isOpenIntro ? (
-							<IntroModalInfo />
+							<IntroModalInfo changeOpenIntro={changeOpenIntro} />
 						) : (
 							<div>
 								<ArrowMusic />
