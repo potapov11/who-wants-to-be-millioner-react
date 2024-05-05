@@ -1,9 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { globalContext } from '../../App';
+
 import './IntroModalInfo.css';
 import hints from '../../img/hints.png';
 import introVideo from '../../assets/video/millioner-intro.mp4';
 
 function IntroModalInfo({ changeOpenIntro }) {
+	const { isMobile } = useContext(globalContext);
 	// const [sessionDataVideo, setSessionDataVideo] = useState(sessionStorage.getItem('video'));
 	// const [intro, setIntro] = useState(sessionStorage.getItem('intro') || false);
 	const [isVideo, setVideo] = useState(false);
@@ -51,8 +54,8 @@ function IntroModalInfo({ changeOpenIntro }) {
 		<div className="intro-wrapper">
 			<div className="intro-modal">
 				{isVideo ? (
-					<div className="video-box">
-						<video src={introVideo} type="video/mp4" autoPlay></video>
+					<div className={isMobile ? 'video-box--mobile' : 'video-box'}>
+						<video className={isMobile ? 'video' : null} src={introVideo} type="video/mp4" autoPlay></video>
 						<button className="button-continue" onClick={() => changeOpenIntro(true)}>
 							Приступить к игре
 						</button>

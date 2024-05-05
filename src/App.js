@@ -8,9 +8,11 @@ import ArrowMusic from './components/ArrowMuisc/ArowMusic.jsx';
 import Hints from './components/Hints/Hint.jsx';
 import WinRating from './components/WinRating/WinRating.jsx';
 import ModalHintHall from './components/Modal/ModalHintHall.jsx';
-import { playSound, stopPlayPollHintSound, stopPlayFriendHintSound } from './components/Audio/Audio.jsx';
+import { playSound, stopPlayPollHintSound, stopPlayFriendHintSound, playWrongSound } from './components/Audio/Audio.jsx';
 import ModalFriendCall from './components/ModalFriendCall/ModalFriendCall.jsx';
 import IntroModalInfo from './components/IntroModalInfo/IntroModalInfo.jsx';
+import ModalLose from './components/ModalLose/ModalLose.jsx';
+import ModalWin from './components/ModalWin/ModalWin.jsx';
 export const globalContext = createContext();
 
 function App() {
@@ -23,8 +25,11 @@ function App() {
 	const [fifty, setFifty] = useState(true);
 	const [openModal, setOpenModal] = useState(false);
 	const [openModalFriend, setOpenModalFriend] = useState(false);
+	const [isModalLose, setModalLose] = useState(false);
 	const [disabled, setIsDisabled] = useState('');
 	const [intro, setIntro] = useState(sessionStorage.getItem('intro') || false);
+	const [isMobile, setIsMobile] = useState(false);
+	const [isModalWin, setModalWin] = useState(false);
 
 	console.log(isOpenIntro);
 
@@ -57,6 +62,10 @@ function App() {
 	}
 
 	useEffect(() => {
+		return window.innerWidth <= 500 ? setIsMobile(true) : null;
+	}, []);
+
+	useEffect(() => {
 		setArrQuestion(numberQuestion < 4 ? easyQuestionsArr : hardQuestionsArr);
 	}, [numberQuestion]);
 
@@ -79,6 +88,17 @@ function App() {
 	function checkIsCorrect(answer, item) {
 		setDisabledAll(true);
 
+		console.log(numberQuestion);
+
+		if (numberQuestion === 14) {
+			setTimeout(() => {
+				alert('Вы выиграли');
+				setModalWin(true);
+				setIsDisabled(true);
+				return;
+			}, 1000);
+		}
+
 		if (answer === arrQuestions[numberQuestion].correctAnswer) {
 			playSound();
 			setTimeout(() => {
@@ -87,33 +107,40 @@ function App() {
 			}, 1000);
 			setGoldItem(item);
 		} else {
-			setRedItem(item);
+			playWrongSound();
 			setTimeout(() => {
-				window.location.reload();
+				setDisabledAll(false);
+				setModalLose(true);
 			}, 3000);
+			setRedItem(item);
 		}
 	}
 
 	return (
-		<globalContext.Provider value={{ numberQuestion, arrQuestions, openModal }}>
+		<globalContext.Provider value={{ numberQuestion, arrQuestions, openModal, isMobile }}>
 			<div className="App">
 				<div className={!disabledAll ? 'container' : 'container disabled-all'}>
-					<div className="block">
-						{isOpenIntro ? (
-							<IntroModalInfo changeOpenIntro={changeOpenIntro} />
-						) : (
-							<div>
-								<ArrowMusic />
-								<ModalHintHall />
-								<ModalFriendCall openModalFriend={openModalFriend} />
-								<Hints hintFifty={hintFifty} fifty={fifty} changeModal={changeModal} changeClass={changeClass} hideModalFriend={hideModalFriend} openModal={openModal} disabled={disabled} />
-								<WinRating />
-								<Logo />
-								{/* <span>count {numberQuestion}</span> */}
-								<Card redItem={redItem} goldItem={goldItem} checkIsCorrect={checkIsCorrect} hideModal={hideModal} />
-							</div>
-						)}
-					</div>
+					{isModalLose ? (
+						<ModalLose />
+					) : (
+						<div className="block">
+							{isOpenIntro ? (
+								<IntroModalInfo changeOpenIntro={changeOpenIntro} />
+							) : (
+								<div>
+									<ArrowMusic />
+									<ModalHintHall />
+									<ModalFriendCall openModalFriend={openModalFriend} />
+									<Hints hintFifty={hintFifty} fifty={fifty} changeModal={changeModal} changeClass={changeClass} hideModalFriend={hideModalFriend} openModal={openModal} disabled={disabled} />
+									<WinRating />
+									<Logo />
+									{/* <span>count {numberQuestion}</span> */}
+									<Card redItem={redItem} goldItem={goldItem} checkIsCorrect={checkIsCorrect} hideModal={hideModal} />
+								</div>
+							)}
+						</div>
+					)}
+					{isModalWin && <ModalWin />}
 				</div>
 			</div>
 		</globalContext.Provider>
