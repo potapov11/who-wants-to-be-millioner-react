@@ -8,12 +8,7 @@ import introVideo from '../../assets/video/millioner-intro.mp4';
 
 function IntroModalInfo({ changeOpenIntro }) {
 	const { isMobile } = useContext(globalContext);
-	// const [sessionDataVideo, setSessionDataVideo] = useState(sessionStorage.getItem('video'));
-	// const [intro, setIntro] = useState(sessionStorage.getItem('intro') || false);
 	const [isVideo, setVideo] = useState(false);
-	// const [isVideo, setVideo] = useState(sessionDataVideo ? true : false);
-
-	console.log(isVideo, 'isVideo');
 
 	const TEXT_HELLO_REF = useRef(null);
 	const TEXT_SOUND_REF = useRef(null);
@@ -32,7 +27,6 @@ function IntroModalInfo({ changeOpenIntro }) {
 		} else {
 			index = 0;
 		}
-		// sessionStorage.setItem('video', false);
 	}
 
 	function setSessionStorage() {

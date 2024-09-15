@@ -18,8 +18,6 @@ function WinRating() {
 		setStyletransform((prevState) => prevState - 20);
 	}, [numberQuestion]);
 
-	console.log(isMobile);
-
 	return (
 		<div className="win-wrapper">
 			<ul
