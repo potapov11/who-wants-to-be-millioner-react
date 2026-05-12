@@ -1,30 +1,31 @@
-import { useContext, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { globalContext, type GlobalContextValue } from "@/context/GlobalContext";
 import hints from "@/img/hints.png";
 import imgArrow from "@/img/icon-play.png";
 import introVideo from "@assets/video/millioner-intro.mp4";
 import type { IntroModalInfoProps } from "./types";
-import { useIntroRevealSequence } from "./useIntroRevealSequence";
 import styles from "./IntroModalInfo.module.scss";
+
+/** Автопереход для шагов 0–3; шаг 4 — только «Продолжить». */
+const LAST_AUTO_STEP_INDEX = 3;
+const STEP_ADVANCE_MS = 2400;
 
 export default function IntroModalInfo({ changeOpenIntro }: IntroModalInfoProps) {
 	const ctx = useContext(globalContext) as GlobalContextValue;
 	const { isMobile } = ctx;
 
 	const [isVideoPhase, setVideoPhase] = useState(false);
+	const [step, setStep] = useState(0);
 
-	const textHelloRef = useRef<HTMLParagraphElement>(null);
-	const textSoundRef = useRef<HTMLParagraphElement>(null);
-	const hintsBlockRef = useRef<HTMLDivElement>(null);
-	const arrowBlockRef = useRef<HTMLDivElement>(null);
-	const continueButtonRef = useRef<HTMLButtonElement>(null);
-
-	const revealRefs = useMemo(
-		() => [textHelloRef, textSoundRef, hintsBlockRef, arrowBlockRef, continueButtonRef] as const,
-		[],
-	);
-
-	useIntroRevealSequence(isVideoPhase, revealRefs, styles.opacity_full);
+	useEffect(() => {
+		if (isVideoPhase || step > LAST_AUTO_STEP_INDEX) {
+			return;
+		}
+		const id = window.setTimeout(() => {
+			setStep((s) => s + 1);
+		}, STEP_ADVANCE_MS);
+		return () => window.clearTimeout(id);
+	}, [isVideoPhase, step]);
 
 	const videoBoxClass = isMobile ? styles.video_box_mobile : styles.video_box;
 	const videoClassName = isMobile ? styles.video : undefined;
@@ -35,37 +36,47 @@ export default function IntroModalInfo({ changeOpenIntro }: IntroModalInfoProps)
 				{isVideoPhase ? (
 					<div className={videoBoxClass}>
 						<video className={videoClassName} src={introVideo} playsInline autoPlay />
-						<button type="button" className={styles.button_continue} onClick={() => changeOpenIntro()}>
+						<button type="button" className={styles.button_continue_video} onClick={() => changeOpenIntro()}>
 							Приступить к игре
 						</button>
 					</div>
 				) : (
-					<>
-						<p className={`${styles.text_hello} ${styles.hide}`} ref={textHelloRef}>
-							Здравствуйте
-							<br />
-							Вы попали на игру <br />
-							Кто хочет стать миллионером
-						</p>
-						<p className={`${styles.text_sound} ${styles.hide}`} ref={textSoundRef}>
-							Для комфортного процесса в игре <br />
-							проверьте — включен ли звук в браузере
-						</p>
-						<div className={`${styles.hints} ${styles.hide}`} ref={hintsBlockRef}>
-							<img src={hints} alt="" />
-							<p className={styles.text}>Вы можете воспользоваться подсказками</p>
-						</div>
-						<div className={`${styles.arrow} ${styles.hide}`} ref={arrowBlockRef}>
-							<img className={styles.img_arrow} src={imgArrow} alt="" />
-							<p className={styles.text}>
-								Нажатием на эту кнопку <br />
-								включается фоновая музыка
+					<div className={styles.intro_stage} key={step}>
+						{step === 0 && (
+							<p className={styles.text_hello}>
+								Здравствуйте
+								<br />
+								Вы попали на игру <br />
+								Кто хочет стать миллионером
 							</p>
-						</div>
-						<button type="button" className={`${styles.button_continue} ${styles.hide}`} ref={continueButtonRef} onClick={() => setVideoPhase(true)}>
-							Продолжить
-						</button>
-					</>
+						)}
+						{step === 1 && (
+							<p className={styles.text_sound}>
+								Для комфортного процесса в игре <br />
+								проверьте — включен ли звук в браузере
+							</p>
+						)}
+						{step === 2 && (
+							<div className={styles.hints}>
+								<img src={hints} alt="" className={styles.hints_img} />
+								<p className={styles.text}>Вы можете воспользоваться подсказками</p>
+							</div>
+						)}
+						{step === 3 && (
+							<div className={styles.arrow}>
+								<img className={styles.img_arrow} src={imgArrow} alt="" width={72} height={72} />
+								<p className={styles.text}>
+									Нажатием на эту кнопку <br />
+									включается фоновая музыка
+								</p>
+							</div>
+						)}
+						{step === 4 && (
+							<button type="button" className={styles.button_continue} onClick={() => setVideoPhase(true)}>
+								Продолжить
+							</button>
+						)}
+					</div>
 				)}
 			</div>
 		</div>

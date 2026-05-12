@@ -73,8 +73,17 @@ export function useQuizGame() {
 		});
 	}, []);
 
+	const showModalFriend = useCallback(() => {
+		setOpenModalFriend(true);
+	}, []);
+
 	const hideModalFriend = useCallback(() => {
-		setOpenModalFriend((prev) => !prev);
+		setOpenModalFriend((wasOpen) => {
+			if (wasOpen) {
+				audioModel.stopPlayFriendHintSound();
+			}
+			return false;
+		});
 	}, []);
 
 	useEffect(() => {
@@ -140,6 +149,7 @@ export function useQuizGame() {
 		changeModal,
 		changeOpenIntro,
 		hideModal,
+		showModalFriend,
 		hideModalFriend,
 		checkIsCorrect,
 		restartGame,

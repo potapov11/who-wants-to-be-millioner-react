@@ -10,7 +10,7 @@ export type HintsProps = {
 	arrQuestions: Question[];
 	numberQuestion: number;
 	changeModal: () => void;
-	hideModalFriend: () => void;
+	showModalFriend: () => void;
 	disabled: string | boolean;
 };
 
@@ -32,7 +32,7 @@ export function useHints({
 	arrQuestions,
 	numberQuestion,
 	changeModal,
-	hideModalFriend,
+	showModalFriend,
 	disabled,
 }: HintsProps) {
 	const [fiftyAvailable, setFiftyAvailable] = useState(true);
@@ -67,7 +67,7 @@ export function useHints({
 				} else if (config.id === "hallHelp") {
 					changeModal();
 				} else {
-					hideModalFriend();
+					showModalFriend();
 				}
 				audioModel[config.sound]();
 				markHintUsed(e.currentTarget);
@@ -79,7 +79,7 @@ export function useHints({
 				onClick,
 			};
 		});
-	}, [fiftyAvailable, disabled, hintFifty, changeModal, hideModalFriend, markHintUsed]);
+	}, [fiftyAvailable, disabled, hintFifty, changeModal, showModalFriend, markHintUsed]);
 
 	return { buttons };
 }

@@ -43,13 +43,20 @@ export default function App() {
 								<div  key={quiz.playSessionId}>
 									<MusicArrowButton />
 									<ModalHintHall />
-									<ModalFriendCall openModalFriend={quiz.openModalFriend} />
+									<ModalFriendCall
+										openModalFriend={quiz.openModalFriend}
+										onClose={quiz.hideModalFriend}
+										onConfirmAnswer={(answer) => {
+											quiz.checkIsCorrect(answer);
+											quiz.hideModal();
+										}}
+									/>
 									<Hints
 										setArrQuestion={quiz.setArrQuestion}
 										arrQuestions={quiz.arrQuestions}
 										numberQuestion={quiz.numberQuestion}
 										changeModal={quiz.changeModal}
-										hideModalFriend={quiz.hideModalFriend}
+										showModalFriend={quiz.showModalFriend}
 										disabled={quiz.disabled}
 									/>
 									<WinRating />
