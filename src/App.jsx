@@ -4,14 +4,14 @@ import { globalContext } from "@/context/GlobalContext";
 import hardQuestionsArr from "./components/HardQuestionsArr";
 import easyQuestionsArr from "./components/EasyQuestionArr";
 import { Card } from "./components/Card/Card.tsx";
-import Logo from "./components/Logo/Logo.jsx";
+import { Logo } from "./components/Logo/Logo.tsx";
 import { MusicArrowButton } from "./components/MusicArrowButton/MusicArrowButton";
-import Hints from "./components/Hints/Hint.jsx";
+import { Hints } from "./components/Hints/Hint";
 import WinRating from "./components/WinRating/WinRating.jsx";
 import ModalHintHall from "./components/Modal/ModalHintHall.jsx";
 import { audioModel } from "@/model/audioModel";
 import ModalFriendCall from "./components/ModalFriendCall/ModalFriendCall.jsx";
-import IntroModalInfo from "./components/IntroModalInfo/IntroModalInfo.jsx";
+import IntroModalInfo from "./components/IntroModalInfo/IntroModalInfo.tsx";
 import ModalLose from "./components/ModalLose/ModalLose.jsx";
 import ModalWin from "./components/ModalWin/ModalWin.jsx";
 
@@ -22,7 +22,6 @@ function App() {
   const [redItem, setRedItem] = useState("");
   const [goldItem, setGoldItem] = useState("");
   const [arrQuestions, setArrQuestion] = useState(numberQuestion < 4 ? easyQuestionsArr : hardQuestionsArr);
-  const [fifty, setFifty] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [openModalFriend, setOpenModalFriend] = useState(false);
   const [isModalLose, setModalLose] = useState(false);
@@ -38,10 +37,6 @@ function App() {
   function changeOpenIntro() {
     setOpenIntro(false);
     sessionStorage.setItem("intro", false);
-  }
-
-  function changeClass(e) {
-    e.classList.add("disabled");
   }
 
   function hideModal() {
@@ -68,22 +63,6 @@ function App() {
   useEffect(() => {
     setArrQuestion(numberQuestion < 4 ? easyQuestionsArr : hardQuestionsArr);
   }, [numberQuestion]);
-
-  function hintFifty() {
-    setFifty(false);
-    let newArrQuestions = arrQuestions.map((item, index) => {
-      if (item === arrQuestions[numberQuestion]) {
-        return {
-          ...item,
-          answers: [item.correctAnswer, item.incorrectAnswer[0]],
-        };
-      } else {
-        return item;
-      }
-    });
-
-    setArrQuestion(newArrQuestions);
-  }
 
   function checkIsCorrect(answer) {
     setDisabledAll(true);
@@ -134,12 +113,11 @@ function App() {
                   <ModalHintHall />
                   <ModalFriendCall openModalFriend={openModalFriend} />
                   <Hints
-                    hintFifty={hintFifty}
-                    fifty={fifty}
+                    setArrQuestion={setArrQuestion}
+                    arrQuestions={arrQuestions}
+                    numberQuestion={numberQuestion}
                     changeModal={changeModal}
-                    changeClass={changeClass}
                     hideModalFriend={hideModalFriend}
-                    openModal={openModal}
                     disabled={disabled}
                   />
                   <WinRating />

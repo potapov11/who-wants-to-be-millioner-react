@@ -1,24 +1,6 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
-.intro-wrapper {
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	background-color: $color-black;
-	color: $color-text-on-dark;
-}
-
-.intro-modal {
-	max-width: 800px;
-	margin: 0 auto;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-	padding-top: 100px;
-}
-
-.intro-modal__text {
+@mixin intro_plate_text {
 	margin: 0;
 	width: auto;
 	background-color: $color-gray-ui;
@@ -30,12 +12,36 @@
 	border-radius: 10px;
 }
 
-.intro-modal__text--hello {
+.intro_wrapper {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background-color: $color-black;
+	color: $color-text-on-dark;
+}
+
+.intro_modal {
+	max-width: 800px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	padding-top: 100px;
+}
+
+.text {
+	@include intro_plate_text;
+}
+
+.text_hello {
+	@include intro_plate_text;
 	position: absolute;
 	top: 75px;
 }
 
-.intro-modal__text--sound {
+.text_sound {
+	@include intro_plate_text;
 	position: absolute;
 	top: 240px;
 }
@@ -44,7 +50,7 @@
 	opacity: 0;
 }
 
-.intro-modal__hints {
+.hints {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -52,19 +58,19 @@
 	top: 380px;
 }
 
-.intro-arrow {
+.arrow {
 	position: relative;
 	top: 455px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	.text {
+		margin-top: 10px;
+	}
 }
 
-.intro-arrow .intro-modal__text {
-	margin-top: 10px;
-}
-
-.button-continue {
+.button_continue {
 	position: fixed;
 	bottom: 100px;
 	left: 50%;
@@ -75,19 +81,21 @@
 	transition: transform 1s ease;
 	color: $color-text-on-dark;
 	text-transform: uppercase;
-}
-
-.button-continue:hover {
-	transform: translateX(-50%) scale(1.2);
+	border: none;
+	font: inherit;
 	cursor: pointer;
+
+	&:hover {
+		transform: translateX(-50%) scale(1.2);
+	}
 }
 
-.video-box {
+.video_box {
 	position: absolute;
 	top: 20px;
 }
 
-.video-box--mobile {
+.video_box_mobile {
 	position: absolute;
 	top: 200px;
 }
@@ -97,7 +105,7 @@
 	height: auto;
 }
 
-img.img-arrow {
+.img_arrow {
 	width: 10%;
 }
 
@@ -119,12 +127,7 @@ img.img-arrow {
 	}
 }
 
-.opacity-full {
+.opacity_full {
 	opacity: 0;
 	animation: ani 2.5s forwards;
-}
-
-.to-opacity-null {
-	opacity: 1;
-	animation: fromOpacity 2s easy;
 }

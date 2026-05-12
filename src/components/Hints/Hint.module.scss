@@ -1,0 +1,57 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+@mixin hint-btn {
+	height: 52px;
+	width: 70px;
+	margin-left: 20px;
+	border-radius: 30px;
+	background: $gradient-radial-ui-button;
+	font-size: 24px;
+	color: $color-accent-gold;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: none;
+	font: inherit;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+}
+
+.hints {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.hints__fifty {
+	@include hint-btn;
+	background-image: url("../../img/50hint.png");
+}
+
+.hall_help {
+	@include hint-btn;
+	background-image: url("../../img/hall-hint.png");
+}
+
+.friend_help {
+	@include hint-btn;
+	background-image: url("../../img/telephone.png");
+}
+
+@include breakpoint-down(800px) {
+	.hints {
+		.hints__fifty,
+		.hall_help,
+		.friend_help {
+			height: 32px;
+			width: 50px;
+			background-position: center;
+		}
+	}
+}
