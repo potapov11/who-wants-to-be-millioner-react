@@ -2,106 +2,158 @@
 @use "../../styles/mixins" as *;
 
 .card {
-  width: 740px;
-  padding: 10px 5px;
-  margin: 0 auto;
-  margin-top: 30px;
-  border-radius: 25px;
+	width: 740px;
+	padding: 10px 5px;
+	margin: 0 auto;
+	margin-top: 30px;
+	border-radius: 25px;
 
-  h3 {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 30px;
-    padding-right: 30px;
-    background-image: url(../../img/btn-question.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 80px;
-    color: $color-text-on-dark;
-  }
+	h3 {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-left: 30px;
+		padding-right: 30px;
+		background-image: url(../../img/btn-question.svg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		height: 80px;
+		color: $color-text-on-dark;
+	}
 
-  ul {
-    padding: 0;
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-
-    li {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 50px;
-      line-height: -22px;
-      font-size: 20px;
-      background-image: url(../../img/button.svg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: $color-white;
-      cursor: pointer;
-      transition: all 0.8s ease;
-    }
-
-    li:hover {
-      font-size: 21px;
-    }
-  }
+	ul {
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 10px;
+	}
 }
 
-@keyframes blink {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.card__item {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	font-size: 20px;
+	background-image: url(../../img/button.svg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: $color-white;
+	cursor: pointer;
+	/* Не `transition: all` — иначе гасится keyframes-подсветка ответа */
+	transition: font-size 0.2s ease, transform 0.2s ease;
+}
+
+.card__item:hover {
+	font-size: 21px;
+}
+
+@keyframes answer-pulse-red {
+	0% {
+		filter: brightness(1) saturate(1);
+		box-shadow: 0 0 0 0 rgb(220 60 60 / 0%);
+	}
+	100% {
+		filter: brightness(1.2) saturate(1.15);
+		box-shadow: 0 0 18px 2px rgb(220 50 50 / 0.65);
+	}
+}
+
+@keyframes answer-pulse-gold {
+	0% {
+		filter: brightness(1) saturate(1);
+		box-shadow: 0 0 0 0 rgb(255 200 80 / 0%);
+	}
+	100% {
+		filter: brightness(1.18) saturate(1.1);
+		box-shadow: 0 0 20px 3px rgb(255 200 80 / 0.55);
+	}
 }
 
 .red {
-  background-image: url(../../img/btn-red.png);
-  animation: blink 0.3s infinite;
+	background-image: url(../../img/btn-red.png);
+	transition: none;
+	animation: answer-pulse-red 0.35s ease-in-out infinite alternate;
 }
 
 .gold {
-  background-image: url(../../img/btn-gold.png);
-  animation: blink 0.3s infinite;
+	background-image: url(../../img/btn-gold.png);
+	transition: none;
+	animation: answer-pulse-gold 0.35s ease-in-out infinite alternate;
 }
 
 @include breakpoint-down($mobile-width) {
-  .card {
-    width: 100%;
-    padding-left: 24px;
-    padding-right: 24px;
+	.card {
+		width: 100%;
+		padding-left: 24px;
+		padding-right: 24px;
 
-    h3 {
-      background-size: contain;
-      font-size: 18px;
-    }
+		h3 {
+			background-size: contain;
+			font-size: 18px;
+		}
 
-    ul {
-      grid-template-columns: initial;
+		ul {
+			grid-template-columns: initial;
+		}
+	}
 
-      li {
-        font-size: 17px;
-        background-position: center;
-        background-size: contain;
-      }
-    }
-  }
+	.card__item {
+		font-size: 17px;
+		background-position: center;
+		background-size: contain;
+	}
 }
 
 @include breakpoint-down($trully-mobile-width) {
-  .card {
-    h3 {
-      background-size: contain;
-      font-size: 13px;
-    }
-  }
+	.card {
+		margin-top: 8px;
+		padding: 4px 12px;
+
+		h3 {
+			background-size: contain;
+			font-size: 12px;
+			line-height: 1.25;
+			height: auto;
+			min-height: 52px;
+			padding: 8px 14px;
+		}
+
+		ul {
+			grid-gap: 6px;
+		}
+	}
+
+	.card__item {
+		height: 42px;
+		font-size: 13px;
+	}
+}
+
+@include breakpoint-down($trully-mobile-width) {
+	@media (max-height: 700px) {
+		.card {
+			margin-top: 4px;
+			padding: 2px 10px;
+
+			h3 {
+				font-size: 11px;
+				min-height: 46px;
+				padding: 6px 10px;
+			}
+
+			ul {
+				grid-gap: 4px;
+			}
+		}
+
+		.card__item {
+			height: 36px;
+			font-size: 12px;
+		}
+	}
 }

@@ -112,7 +112,7 @@ export function useQuizGame() {
 				}, 1000);
 			} else {
 				setRedItem(answer);
-				setGoldItem("");
+				setGoldItem(current.correctAnswer);
 				void audioModel.playWrongSound();
 				timeoutRef.current = window.setTimeout(() => {
 					timeoutRef.current = null;

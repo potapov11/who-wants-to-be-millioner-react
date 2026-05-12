@@ -55,3 +55,23 @@
 		}
 	}
 }
+
+@include breakpoint-down($trully-mobile-width) {
+	.hints {
+		margin-top: 6px;
+		margin-bottom: 4px;
+		gap: 2px;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		.hints__fifty,
+		.hall_help,
+		.friend_help {
+			height: 36px;
+			width: 48px;
+			margin-left: 4px;
+			background-position: center;
+			background-size: contain;
+		}
+	}
+}

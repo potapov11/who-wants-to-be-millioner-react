@@ -29,6 +29,47 @@ code {
 	overflow: hidden;
 }
 
+/* iPhone SE и узкие экраны: контент может быть выше viewport — разрешаем скролл */
+@media (max-width: $trully-mobile-width) {
+	.container {
+		height: auto;
+		min-height: 100vh;
+		min-height: 100dvh;
+		overflow-x: hidden;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+	}
+
+	/* Высокие телефоны (XR и т.п.): растягиваем игровой столбец по высоте экрана */
+	.block {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		min-height: 0;
+	}
+
+	/* Только игровой экран (не интро): класс музыки глобальный — см. MusicArrowButton.scss */
+	.block > div:has(.arrow-music) {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 0;
+		padding-top: max(4px, env(safe-area-inset-top, 0px));
+		padding-bottom: max(4px, env(safe-area-inset-bottom, 0px));
+	}
+
+	/* Низкие экраны (SE): не разъезжаем блоки слишком сильно — как раньше плотнее сверху */
+	@media (max-height: 700px) {
+		.block > div:has(.arrow-music) {
+			justify-content: flex-start;
+			row-gap: clamp(4px, 1.2vh, 12px);
+		}
+	}
+}
+
 .block {
 	position: relative;
 	width: 100%;
@@ -55,5 +96,18 @@ code {
 			width: 200px;
 			height: auto;
 		}
+	}
+}
+
+@media (max-width: $trully-mobile-width) {
+	.block img {
+		width: min(34vw, 128px);
+		height: auto;
+	}
+}
+
+@media (max-width: $trully-mobile-width) and (max-height: 700px) {
+	.block img {
+		width: min(30vw, 108px);
 	}
 }

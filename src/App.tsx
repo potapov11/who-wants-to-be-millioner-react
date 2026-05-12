@@ -40,7 +40,7 @@ export default function App() {
 							{quiz.isOpenIntro ? (
 								<IntroModalInfo changeOpenIntro={quiz.changeOpenIntro} />
 							) : (
-								<div key={quiz.playSessionId}>
+								<div  key={quiz.playSessionId}>
 									<MusicArrowButton />
 									<ModalHintHall />
 									<ModalFriendCall openModalFriend={quiz.openModalFriend} />
