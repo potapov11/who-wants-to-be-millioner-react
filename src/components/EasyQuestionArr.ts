@@ -1,4 +1,7 @@
-let questionsEasyArr = [
+import type { Question } from "@/types/question";
+import { shuffleCopy } from "@/utils/shuffleCopy";
+
+const easyQuestionsRaw: Question[] = [
 	{
 		question: 'Сколько лап у кота?',
 		answers: ['A 1', 'B 3', 'C 4', 'D 7'],
@@ -156,21 +159,4 @@ let questionsEasyArr = [
 	},
 ];
 
-const shuffle = (array) => {
-	let m = array.length,
-		t,
-		i;
-
-	while (m) {
-		i = Math.floor(Math.random() * m--);
-		t = array[m];
-		array[m] = array[i];
-		array[i] = t;
-	}
-
-	return array;
-};
-
-questionsEasyArr = shuffle(questionsEasyArr);
-
-export default questionsEasyArr;
+export default shuffleCopy(easyQuestionsRaw);

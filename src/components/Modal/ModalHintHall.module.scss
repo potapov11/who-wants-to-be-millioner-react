@@ -1,0 +1,54 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.modal {
+	position: absolute;
+	top: 95px;
+	left: 50%;
+	padding: 40px;
+	transform: translate(-50%, 0);
+	width: 400px;
+	height: 300px;
+	border: 2px solid $color-border-silver;
+	background-color: $color-bg-modal-dark;
+	color: $color-text-on-dark;
+	z-index: 100;
+}
+
+.modal_inner {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.typewriter {
+	margin-bottom: 8px;
+}
+
+.hall_hint {
+	display: flex;
+	justify-content: space-around;
+	flex-grow: 1;
+}
+
+.hall_hint_item {
+	margin-top: auto;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+}
+
+.hall_hint_inner {
+	width: 30px;
+	background: $gradient-hall-column;
+	transition: height 2s ease;
+}
+
+@include breakpoint-down($mobile-width) {
+	.modal {
+		width: min(400px, 92vw);
+		padding: 24px;
+		height: auto;
+		min-height: 240px;
+	}
+}

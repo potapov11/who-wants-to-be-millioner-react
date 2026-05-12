@@ -4,28 +4,31 @@
 	"private": true,
 	"type": "module",
 	"dependencies": {
-		"@testing-library/jest-dom": "^5.17.0",
-		"@testing-library/react": "^13.4.0",
-		"@testing-library/user-event": "^13.5.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"typeit-react": "^2.7.1",
-		"web-vitals": "^2.1.4"
+		"typeit-react": "^2.7.1"
 	},
 	"devDependencies": {
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.2.0",
+		"@testing-library/user-event": "^14.6.1",
 		"@types/react": "^18.2.79",
 		"@types/react-dom": "^18.2.25",
 		"@vitejs/plugin-react": "^4.3.4",
+		"jsdom": "^25.0.1",
 		"sass": "^1.83.4",
 		"typescript": "^5.7.3",
-		"vite": "^5.4.14"
+		"vite": "^5.4.14",
+		"vitest": "^3.0.5"
 	},
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
 		"typecheck": "tsc --noEmit",
-		"test": "echo \"Tests: подключите Vitest при необходимости\" && exit 0"
+		"test": "vitest",
+		"test:run": "vitest run",
+		"ci": "npm run typecheck && npm run test:run && npm run build"
 	},
 	"browserslist": {
 		"production": [">0.2%", "not dead", "not op_mini all"],

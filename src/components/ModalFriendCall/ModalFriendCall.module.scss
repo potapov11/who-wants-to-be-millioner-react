@@ -1,0 +1,41 @@
+@use "../../styles/variables" as *;
+
+.modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba($color-black, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+}
+
+.modal_inner {
+	width: 50%;
+	height: 50%;
+	background-color: $color-black;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: $color-text-on-dark;
+}
+
+.friend_hint {
+	margin-top: 20px;
+	font-size: 24px;
+	animation: scale_font 1s ease-in-out infinite alternate;
+}
+
+@keyframes scale_font {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.2);
+	}
+}

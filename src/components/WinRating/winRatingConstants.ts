@@ -1,0 +1,7 @@
+/** Ступени выигрыша (15 вопросов). */
+export const WIN_PRIZE_AMOUNTS = [
+	100, 200, 300, 400, 500, 1000, 2000, 5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000,
+] as const;
+
+export const WIN_RATING_INITIAL_OFFSET_PX = 20;
+export const WIN_RATING_STEP_PX = 20;

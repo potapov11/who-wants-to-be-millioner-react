@@ -1,6 +1,12 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
-.win-rating-list {
+.wrapper {
+	position: absolute;
+	right: 250px;
+}
+
+.list {
 	display: flex;
 	flex-direction: column-reverse;
 	color: $color-text-on-dark;
@@ -9,25 +15,20 @@
 	list-style: none;
 }
 
-.win-wrapper {
-	position: absolute;
-	right: 250px;
-}
-
-.bck-gold {
+.item_active {
 	background-color: $color-accent-gold;
 }
 
-@media (max-width: $mobile-width) {
-	.win-wrapper {
+@include breakpoint-down($mobile-width) {
+	.wrapper {
 		top: 10px;
 		right: 50px;
 		font-size: 15px;
 	}
 }
 
-@media (max-width: $trully-mobile-width) {
-	.win-wrapper {
+@include breakpoint-down($trully-mobile-width) {
+	.wrapper {
 		top: 290px;
 		left: 50%;
 		transform: translate(-50%, 0);
@@ -35,7 +36,7 @@
 		overflow: hidden;
 	}
 
-	.win-rating-list {
+	.list {
 		flex-direction: column;
 	}
 }
