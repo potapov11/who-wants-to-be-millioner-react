@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './ModalWin.css';
+import './ModalWin.scss';
 
 function ModalWin() {
 	return (

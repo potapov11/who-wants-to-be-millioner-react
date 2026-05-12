@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { globalContext } from '@/context/GlobalContext';
-import './IntroModalInfo.css';
+import './IntroModalInfo.scss';
 import hints from '../../img/hints.png';
 import imgArrow from '../../img/icon-play.png';
-import introVideo from '../../assets/video/millioner-intro.mp4';
+import introVideo from '@assets/video/millioner-intro.mp4';
 
 function IntroModalInfo({ changeOpenIntro }) {
 	const { isMobile } = useContext(globalContext);

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { globalContext } from "@/context/GlobalContext";
-import "./WinRating.css";
+import "./WinRating.scss";
 
 function WinRating() {
   const { numberQuestion, isMobile } = useContext(globalContext);

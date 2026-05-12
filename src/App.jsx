@@ -1,20 +1,15 @@
-import "./App.css";
+import "./App.scss";
 import { useState, useEffect } from "react";
 import { globalContext } from "@/context/GlobalContext";
 import hardQuestionsArr from "./components/HardQuestionsArr";
 import easyQuestionsArr from "./components/EasyQuestionArr";
-import Card from "./components/Card/Card.jsx";
+import { Card } from "./components/Card/Card.tsx";
 import Logo from "./components/Logo/Logo.jsx";
-import ArrowMusic from "./components/ArrowMuisc/ArowMusic";
+import { MusicArrowButton } from "./components/MusicArrowButton/MusicArrowButton";
 import Hints from "./components/Hints/Hint.jsx";
 import WinRating from "./components/WinRating/WinRating.jsx";
 import ModalHintHall from "./components/Modal/ModalHintHall.jsx";
-import {
-  playSound,
-  stopPlayPollHintSound,
-  stopPlayFriendHintSound,
-  playWrongSound,
-} from "./components/Audio/Audio.jsx";
+import { audioModel } from "@/model/audioModel";
 import ModalFriendCall from "./components/ModalFriendCall/ModalFriendCall.jsx";
 import IntroModalInfo from "./components/IntroModalInfo/IntroModalInfo.jsx";
 import ModalLose from "./components/ModalLose/ModalLose.jsx";
@@ -36,8 +31,6 @@ function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [isModalWin, setModalWin] = useState(false);
 
-  console.log(isOpenIntro);
-
   function changeModal() {
     setOpenModal(!openModal);
   }
@@ -54,11 +47,11 @@ function App() {
   function hideModal() {
     if (openModal) {
       setOpenModal(false);
-      stopPlayPollHintSound();
+      audioModel.stopPlayPollHintSound();
     }
     if (openModalFriend) {
       setOpenModalFriend(false);
-      stopPlayFriendHintSound();
+      audioModel.stopPlayFriendHintSound();
     }
   }
 
@@ -67,7 +60,9 @@ function App() {
   }
 
   useEffect(() => {
-    return window.innerWidth <= 500 ? setIsMobile(true) : null;
+    if (window.innerWidth <= 520) {
+      setIsMobile(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -90,10 +85,8 @@ function App() {
     setArrQuestion(newArrQuestions);
   }
 
-  function checkIsCorrect(answer, item) {
+  function checkIsCorrect(answer) {
     setDisabledAll(true);
-
-    console.log(numberQuestion);
 
     if (numberQuestion === 14) {
       setTimeout(() => {
@@ -105,19 +98,23 @@ function App() {
     }
 
     if (answer === arrQuestions[numberQuestion].correctAnswer) {
-      playSound();
+      setGoldItem(answer);
+      setRedItem("");
+      audioModel.playSound();
       setTimeout(() => {
+        setGoldItem("");
+        setRedItem("");
         setNumberQuestion((prevState) => prevState + 1);
         setDisabledAll(false);
       }, 1000);
-      setGoldItem(item);
     } else {
-      playWrongSound();
+      setRedItem(answer);
+      setGoldItem("");
+      audioModel.playWrongSound();
       setTimeout(() => {
         setDisabledAll(false);
         setModalLose(true);
       }, 3000);
-      setRedItem(item);
     }
   }
 
@@ -133,7 +130,7 @@ function App() {
                 <IntroModalInfo changeOpenIntro={changeOpenIntro} />
               ) : (
                 <div>
-                  <ArrowMusic />
+                  <MusicArrowButton />
                   <ModalHintHall />
                   <ModalFriendCall openModalFriend={openModalFriend} />
                   <Hints

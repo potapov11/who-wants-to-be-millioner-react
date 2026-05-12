@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import TypeIt from 'typeit-react';
 import { globalContext } from '@/context/GlobalContext';
-import './ModalFriendCall.css';
+import './ModalFriendCall.scss';
 
 function ModalFriendCall({ openModalFriend }) {
 	const [showFriendHint, setShowFriendHint] = useState(false);

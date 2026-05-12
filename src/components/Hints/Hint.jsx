@@ -1,6 +1,6 @@
 import React from 'react';
-import { playFiftySound, playPollHintSound, playFriendHintSound } from '../Audio/Audio';
-import './Hint.css';
+import { audioModel } from "@/model/audioModel";
+import './Hint.scss';
 
 function Hints({ hintFifty, fifty, changeModal, disabled, hideModalFriend, changeClass }) {
 	return (
@@ -9,7 +9,7 @@ function Hints({ hintFifty, fifty, changeModal, disabled, hideModalFriend, chang
 				className={fifty ? 'hints__fifity' : 'hints__fifity disabled'}
 				onClick={(e) => {
 					hintFifty();
-					playFiftySound();
+					audioModel.playFiftySound();
 					changeClass(e.target);
 				}}></button>
 
@@ -17,7 +17,7 @@ function Hints({ hintFifty, fifty, changeModal, disabled, hideModalFriend, chang
 				className={!disabled ? 'hall-help' : 'hall-help disabled'}
 				onClick={(e) => {
 					changeModal();
-					playPollHintSound();
+					audioModel.playPollHintSound();
 					changeClass(e.target);
 				}}></button>
 
@@ -25,7 +25,7 @@ function Hints({ hintFifty, fifty, changeModal, disabled, hideModalFriend, chang
 				className={!disabled ? 'friend-help' : 'friend-help disabled'}
 				onClick={(e) => {
 					hideModalFriend();
-					playFriendHintSound();
+					audioModel.playFriendHintSound();
 					changeClass(e.target);
 				}}></button>
 		</div>

@@ -1,0 +1,60 @@
+// Базовые цвета
+$color-white: #ffffff;
+$color-black: #000000;
+
+// Акцент «золото» квиза (иконки, подсветка)
+$color-accent-gold: goldenrod;
+
+// Фоны
+$color-bg-app-header: #282c34;
+$color-bg-modal-dark: #040c14;
+$color-bg-body-fallback: rgb(2, 0, 36);
+
+// Текст на тёмном фоне
+$color-text-on-dark: $color-white;
+
+// Обводки
+$color-border-silver: silver;
+
+// Кнопки подсказок / музыки — общий radial
+$color-ui-blue-deep: rgb(22, 79, 127);
+$color-ui-blue-mid: rgb(101, 138, 165);
+
+$gradient-radial-ui-button: radial-gradient(
+	9487.22% 68.25% at 50% 78%,
+	$color-ui-blue-deep 40%,
+	$color-ui-blue-mid 79.006%,
+	rgb(99 70 70 / 0%) 100%,
+	rgb(0 0 0) 100%
+);
+
+// Столбики зала подсказки
+$gradient-hall-column: linear-gradient(to bottom, #0c2947, #e0f2ff);
+
+// Intro: плашки с текстом
+$color-intro-plate-light: rgb(219, 219, 219);
+$color-intro-plate-mid: rgba(140, 120, 120, 1);
+$color-intro-plate-accent: rgba(252, 176, 69, 1);
+$color-intro-text-on-plate: $color-black;
+$color-gray-ui: gray;
+
+$gradient-intro-text-plate: radial-gradient(
+	circle,
+	rgba(219, 219, 219, 1) 35%,
+	$color-intro-plate-mid 100%,
+	$color-intro-plate-accent 100%
+);
+
+// Intro: кнопка «Продолжить»
+$color-intro-button-blue: rgb(18, 60, 106);
+$color-intro-button-dark: rgb(4, 12, 21);
+
+$gradient-intro-button: radial-gradient(
+	50% 50% at 50% 50%,
+	$color-intro-button-blue,
+	$color-intro-button-dark 100%
+);
+
+// Брейкпоинты
+$mobile-width: 1023px;
+$trully-mobile-width: 520px;

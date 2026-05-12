@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import TypeIt from 'typeit-react';
 import { globalContext } from '@/context/GlobalContext';
-import './ModalHintHall.css';
+import './ModalHintHall.scss';
 
 function ModalHintHall() {
 	const { arrQuestions, numberQuestion, openModal } = useContext(globalContext);

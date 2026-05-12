@@ -1,0 +1,130 @@
+@use '../../styles/variables' as *;
+
+.intro-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background-color: $color-black;
+	color: $color-text-on-dark;
+}
+
+.intro-modal {
+	max-width: 800px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	padding-top: 100px;
+}
+
+.intro-modal__text {
+	margin: 0;
+	width: auto;
+	background-color: $color-gray-ui;
+	display: inline-block;
+	padding: 15px 15px;
+	background: $color-intro-plate-light;
+	background: $gradient-intro-text-plate;
+	color: $color-intro-text-on-plate;
+	border-radius: 10px;
+}
+
+.intro-modal__text--hello {
+	position: absolute;
+	top: 75px;
+}
+
+.intro-modal__text--sound {
+	position: absolute;
+	top: 240px;
+}
+
+.hide {
+	opacity: 0;
+}
+
+.intro-modal__hints {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	top: 380px;
+}
+
+.intro-arrow {
+	position: relative;
+	top: 455px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.intro-arrow .intro-modal__text {
+	margin-top: 10px;
+}
+
+.button-continue {
+	position: fixed;
+	bottom: 100px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 320px;
+	padding: 10px 10px;
+	background: $gradient-intro-button;
+	transition: transform 1s ease;
+	color: $color-text-on-dark;
+	text-transform: uppercase;
+}
+
+.button-continue:hover {
+	transform: translateX(-50%) scale(1.2);
+	cursor: pointer;
+}
+
+.video-box {
+	position: absolute;
+	top: 20px;
+}
+
+.video-box--mobile {
+	position: absolute;
+	top: 200px;
+}
+
+.video {
+	width: 100%;
+	height: auto;
+}
+
+img.img-arrow {
+	width: 10%;
+}
+
+@keyframes fromOpacity {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes ani {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.opacity-full {
+	opacity: 0;
+	animation: ani 2.5s forwards;
+}
+
+.to-opacity-null {
+	opacity: 1;
+	animation: fromOpacity 2s easy;
+}

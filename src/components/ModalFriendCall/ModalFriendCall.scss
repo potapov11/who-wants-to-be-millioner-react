@@ -1,3 +1,5 @@
+@use '../../styles/variables' as *;
+
 .modal {
 	position: absolute;
 	top: 0;
@@ -6,9 +8,9 @@
 	transform: translate(-50%, 0);
 	width: 400px;
 	height: 300px;
-	border: 2px solid silver;
-	background-color: #040c14;
-	color: white;
+	border: 2px solid $color-border-silver;
+	background-color: $color-bg-modal-dark;
+	color: $color-text-on-dark;
 	z-index: 100;
 }
 
@@ -32,8 +34,7 @@
 
 .hall-hint__inner {
 	width: 30px;
-	background: linear-gradient(to bottom, #0c2947, #e0f2ff);
-	/* background-color: aqua; */
+	background: $gradient-hall-column;
 	transition: height 2s ease !important;
 }
 
@@ -42,9 +43,9 @@
 	width: 70px;
 	margin-left: 20px;
 	border-radius: 30px;
-	background: radial-gradient(9487.22% 68.25% at 50% 78%, rgb(22, 79, 127) 40%, rgb(101, 138, 165) 79.006%, rgb(99 70 70 / 0%) 100%, rgb(0 0 0) 100%);
+	background: $gradient-radial-ui-button;
 	font-size: 24px;
-	color: goldenrod;
+	color: $color-accent-gold;
 	padding: 10px 20px;
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -60,7 +61,7 @@
 .friend-hint {
 	margin-top: 30px;
 	font-size: 30px;
-	color: goldenrod;
+	color: $color-accent-gold;
 	animation: scaleFont 2s ease infinite;
 }
 
