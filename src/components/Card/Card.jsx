@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { globalContext } from "../../App";
+import { globalContext } from "@/context/GlobalContext";
 import "./Card.css";
 
 function Card({ redItem, goldItem, checkIsCorrect, hideModal }) {

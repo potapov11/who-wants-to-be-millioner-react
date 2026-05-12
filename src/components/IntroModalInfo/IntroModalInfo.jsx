@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import { globalContext } from '../../App';
-
+import { globalContext } from '@/context/GlobalContext';
 import './IntroModalInfo.css';
 import hints from '../../img/hints.png';
 import imgArrow from '../../img/icon-play.png';

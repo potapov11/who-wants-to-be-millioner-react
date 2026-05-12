@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import TypeIt from 'typeit-react';
-import { globalContext } from '../../App';
+import { globalContext } from '@/context/GlobalContext';
 import './ModalFriendCall.css';
 
 function ModalFriendCall({ openModalFriend }) {
