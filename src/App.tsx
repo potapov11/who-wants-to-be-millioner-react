@@ -14,7 +14,7 @@ import { useMobileViewport } from "@/hooks/useMobileViewport";
 import { useQuizGame } from "@/hooks/useQuizGame";
 
 /** Совпадает с `$trully-mobile-width` в `styles/_variables.scss`. */
-const MOBILE_VIEWPORT_MAX_PX = 520;
+const MOBILE_VIEWPORT_MAX_PX = 800;
 
 export default function App() {
 	const isMobile = useMobileViewport(MOBILE_VIEWPORT_MAX_PX);
@@ -59,8 +59,8 @@ export default function App() {
 										showModalFriend={quiz.showModalFriend}
 										disabled={quiz.disabled}
 									/>
-									<WinRating />
 									<Logo />
+									<WinRating />
 									<Card
 										redItem={quiz.redItem}
 										goldItem={quiz.goldItem}

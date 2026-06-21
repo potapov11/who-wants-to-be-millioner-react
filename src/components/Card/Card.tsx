@@ -14,14 +14,18 @@ export const Card = ({ redItem, goldItem, checkIsCorrect, hideModal }: CardProps
         <ul className={styles.card__list}>
           {arrQuestions[numberQuestion].answers.map((answer, index) => (
             <li
-              className={`${styles.card__item} ${goldItem === answer ? styles.gold : ""} ${redItem === answer ? styles.red : ""}`}
+              className={styles.card__item}
               key={index}
               onClick={() => {
                 checkIsCorrect(answer);
                 hideModal();
               }}
             >
-              {answer}
+              <span
+                className={`${styles.card__item_inner} ${goldItem === answer ? styles.gold : ""} ${redItem === answer ? styles.red : ""}`}
+              >
+                {answer}
+              </span>
             </li>
           ))}
         </ul>

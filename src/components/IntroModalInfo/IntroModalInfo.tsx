@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { globalContext, type GlobalContextValue } from "@/context/GlobalContext";
 import hints from "@/img/hints.png";
-import imgArrow from "@/img/icon-play.png";
 import introVideo from "@assets/video/millioner-intro.mp4";
 import type { IntroModalInfoProps } from "./types";
 import styles from "./IntroModalInfo.module.scss";
@@ -64,7 +63,7 @@ export default function IntroModalInfo({ changeOpenIntro }: IntroModalInfoProps)
 						)}
 						{step === 3 && (
 							<div className={styles.arrow}>
-								<img className={styles.img_arrow} src={imgArrow} alt="" width={72} height={72} />
+								<div className={styles.music_button_preview} aria-hidden="true" />
 								<p className={styles.text}>
 									Нажатием на эту кнопку <br />
 									включается фоновая музыка

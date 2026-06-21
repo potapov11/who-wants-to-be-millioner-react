@@ -57,4 +57,10 @@ $gradient-intro-button: radial-gradient(
 
 // Брейкпоинты
 $mobile-width: 1023px;
-$trully-mobile-width: 520px;
+$trully-mobile-width: 800px;
+
+// Игровая карточка и боковая шкала (десктоп)
+$game-card-width: 740px;
+$win-rating-block-width: 175px;
+$win-rating-side-gap: 24px;
+$win-rating-side-min-viewport: $game-card-width + 2 * ($win-rating-block-width + $win-rating-side-gap);

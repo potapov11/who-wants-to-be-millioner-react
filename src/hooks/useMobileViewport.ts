@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 
-/**
- * Однократная проверка ширины окна при монтировании (как в оригинальном App).
- */
+function matchesMobileViewport(maxWidthPx: number): boolean {
+	if (typeof window === "undefined") {
+		return false;
+	}
+	return window.matchMedia(`(max-width: ${maxWidthPx}px)`).matches;
+}
+
 export function useMobileViewport(maxWidthPx: number): boolean {
-	const [isMobile, setIsMobile] = useState(false);
+	const [isMobile, setIsMobile] = useState(() => matchesMobileViewport(maxWidthPx));
 
 	useEffect(() => {
-		if (typeof window !== "undefined" && window.innerWidth <= maxWidthPx) {
-			setIsMobile(true);
-		}
+		const mediaQuery = window.matchMedia(`(max-width: ${maxWidthPx}px)`);
+		const sync = () => setIsMobile(mediaQuery.matches);
+
+		sync();
+		mediaQuery.addEventListener("change", sync);
+		return () => mediaQuery.removeEventListener("change", sync);
 	}, [maxWidthPx]);
 
 	return isMobile;

@@ -34,56 +34,73 @@
 
 .card__item {
 	width: 100%;
+	height: 50px;
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	list-style: none;
+	container-type: size;
+}
+
+.card__item_inner {
+	position: relative;
+	z-index: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 50px;
+	aspect-ratio: 375 / 53;
+	width: min(100cqw, calc(100cqh * 375 / 53));
+	height: min(100cqh, calc(100cqw * 53 / 375));
 	font-size: 20px;
-	background-image: url(../../img/button.svg);
-	background-repeat: no-repeat;
-	background-size: cover;
+	line-height: 1.2;
 	color: $color-white;
-	cursor: pointer;
-	/* Не `transition: all` — иначе гасится keyframes-подсветка ответа */
-	transition: font-size 0.2s ease, transform 0.2s ease;
+	isolation: isolate;
 }
 
-.card__item:hover {
-	font-size: 21px;
+.card__item_inner::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background-image: url(../../img/button.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+}
+
+.red::before {
+	background-image: url(../../img/btn-red.png);
+	animation: answer-pulse-red 0.35s ease-in-out infinite alternate;
+}
+
+.gold::before {
+	background-image: url(../../img/btn-gold.png);
+	animation: answer-pulse-gold 0.35s ease-in-out infinite alternate;
 }
 
 @keyframes answer-pulse-red {
 	0% {
 		filter: brightness(1) saturate(1);
-		box-shadow: 0 0 0 0 rgb(220 60 60 / 0%);
 	}
 	100% {
-		filter: brightness(1.2) saturate(1.15);
-		box-shadow: 0 0 18px 2px rgb(220 50 50 / 0.65);
+		filter: brightness(1.18) saturate(1.12);
 	}
 }
 
 @keyframes answer-pulse-gold {
 	0% {
 		filter: brightness(1) saturate(1);
-		box-shadow: 0 0 0 0 rgb(255 200 80 / 0%);
 	}
 	100% {
-		filter: brightness(1.18) saturate(1.1);
-		box-shadow: 0 0 20px 3px rgb(255 200 80 / 0.55);
+		filter: brightness(1.15) saturate(1.08);
 	}
 }
 
-.red {
-	background-image: url(../../img/btn-red.png);
-	transition: none;
-	animation: answer-pulse-red 0.35s ease-in-out infinite alternate;
-}
-
-.gold {
-	background-image: url(../../img/btn-gold.png);
-	transition: none;
-	animation: answer-pulse-gold 0.35s ease-in-out infinite alternate;
+@media (prefers-reduced-motion: reduce) {
+	.red::before,
+	.gold::before {
+		animation: none;
+	}
 }
 
 @include breakpoint-down($mobile-width) {
@@ -102,10 +119,8 @@
 		}
 	}
 
-	.card__item {
+	.card__item_inner {
 		font-size: 17px;
-		background-position: center;
-		background-size: contain;
 	}
 }
 
@@ -130,6 +145,9 @@
 
 	.card__item {
 		height: 42px;
+	}
+
+	.card__item_inner {
 		font-size: 13px;
 	}
 }
@@ -153,6 +171,9 @@
 
 		.card__item {
 			height: 36px;
+		}
+
+		.card__item_inner {
 			font-size: 12px;
 		}
 	}

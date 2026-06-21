@@ -22,11 +22,17 @@
 }
 
 .arrow-music-play {
-  background-image: url("../../img/icon-play.png");
+  background-image: url("../../img/icon-play.svg"), $gradient-radial-ui-button;
+  background-size: 55%, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
 }
 
 .arrow-music-stop {
-  background-image: url("../../img/icon-stop.png");
+  background-image: url("../../img/icon-stop.svg"), $gradient-radial-ui-button;
+  background-size: 55%, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
 }
 
 @include breakpoint-down($mobile-width) {
