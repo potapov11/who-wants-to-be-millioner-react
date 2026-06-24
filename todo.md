@@ -22,3 +22,5 @@
 ## Сделано недавно
 
 - Повторная игра **без `window.location.reload`**: `restartGame` в `useQuizGame`, проп `onPlayAgain` у `ModalWin` / `ModalLose`, сброс модалок, вопроса, подсказок; `key={playSessionId}` для сброса локального UI подсказок (50:50, классы на кнопках).
+
+## Раздробить useQuizGame на более мелкие хуки

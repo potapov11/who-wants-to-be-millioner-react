@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { globalContext, type GlobalContextValue } from "@/context/GlobalContext";
-import hints from "@/img/hints.png";
-import introVideo from "@assets/video/millioner-intro.mp4";
-import type { IntroModalInfoProps } from "./types";
-import styles from "./IntroModalInfo.module.scss";
+import { useContext, useEffect, useState } from 'react';
+import { globalContext, type GlobalContextValue } from '@/context/GlobalContext';
+import hints from '@/img/hints.png';
+import introVideo from '@assets/video/millioner-intro.mp4';
+import type { IntroModalInfoProps } from './types';
+import styles from './IntroModalInfo.module.scss';
 
 /** Автопереход для шагов 0–3; шаг 4 — только «Продолжить». */
 const LAST_AUTO_STEP_INDEX = 3;
@@ -11,6 +11,8 @@ const STEP_ADVANCE_MS = 2400;
 
 export default function IntroModalInfo({ changeOpenIntro }: IntroModalInfoProps) {
 	const ctx = useContext(globalContext) as GlobalContextValue;
+	console.log(ctx, 'ctx');
+
 	const { isMobile } = ctx;
 
 	const [isVideoPhase, setVideoPhase] = useState(false);
