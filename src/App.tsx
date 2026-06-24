@@ -1,17 +1,17 @@
-import "./App.scss";
-import { globalContext, type GlobalContextValue } from "@/context/GlobalContext";
-import { Card } from "./components/Card/Card";
-import { Logo } from "./components/Logo/Logo";
-import { MusicArrowButton } from "./components/MusicArrowButton/MusicArrowButton";
-import { Hints } from "./components/Hints/Hint";
-import WinRating from "./components/WinRating/WinRating";
-import { ModalHintHall } from "./components/Modal/ModalHintHall";
-import ModalFriendCall from "./components/ModalFriendCall/ModalFriendCall";
-import IntroModalInfo from "./components/IntroModalInfo/IntroModalInfo";
-import ModalLose from "./components/ModalLose/ModalLose";
-import ModalWin from "./components/ModalWin/ModalWin";
-import { useMobileViewport } from "@/hooks/useMobileViewport";
-import { useQuizGame } from "@/hooks/useQuizGame";
+import './App.scss';
+import { globalContext, type GlobalContextValue } from '@/context/GlobalContext';
+import { Card } from './components/Card/Card';
+import { Logo } from './components/Logo/Logo';
+import { MusicArrowButton } from './components/MusicArrowButton/MusicArrowButton';
+import { Hints } from './components/Hints/Hint';
+import WinRating from './components/WinRating/WinRating';
+import { ModalHintHall } from './components/Modal/ModalHintHall';
+import ModalFriendCall from './components/ModalFriendCall/ModalFriendCall';
+import IntroModalInfo from './components/IntroModalInfo/IntroModalInfo';
+import ModalLose from './components/ModalLose/ModalLose';
+import ModalWin from './components/ModalWin/ModalWin';
+import { useMobileViewport } from '@/hooks/useMobileViewport';
+import { useQuizGame } from '@/hooks/useQuizGame';
 
 /** Совпадает с `$trully-mobile-width` в `styles/_variables.scss`. */
 const MOBILE_VIEWPORT_MAX_PX = 800;
@@ -27,51 +27,75 @@ export default function App() {
 		isMobile,
 	};
 
-	const containerClassName = !quiz.disabledAll ? "container" : "container disabled-all";
+	const containerClassName = !quiz.disabledAll ? 'container' : 'container disabled-all';
+
+	if (quiz.isModalLose) {
+		return (
+			<globalContext.Provider value={contextValue}>
+				<div className="App">
+					<div className={containerClassName}>
+						<ModalLose onPlayAgain={quiz.restartGame} />
+					</div>
+				</div>
+			</globalContext.Provider>
+		);
+	}
+
+	if (quiz.isModalWin) {
+		return (
+			<globalContext.Provider value={contextValue}>
+				<div className="App">
+					<div className={containerClassName}>
+						<ModalWin onPlayAgain={quiz.restartGame} />
+					</div>
+				</div>
+			</globalContext.Provider>
+		);
+	}
+
+	if (quiz.isOpenIntro) {
+		return (
+			<globalContext.Provider value={contextValue}>
+				<div className="App">
+					<div className={containerClassName}>
+						<div className="block">
+							<IntroModalInfo changeOpenIntro={quiz.changeOpenIntro} />
+						</div>
+					</div>
+				</div>
+			</globalContext.Provider>
+		);
+	}
 
 	return (
 		<globalContext.Provider value={contextValue}>
 			<div className="App">
 				<div className={containerClassName}>
-					{quiz.isModalLose ? (
-						<ModalLose onPlayAgain={quiz.restartGame} />
-					) : (
-						<div className="block">
-							{quiz.isOpenIntro ? (
-								<IntroModalInfo changeOpenIntro={quiz.changeOpenIntro} />
-							) : (
-								<div  key={quiz.playSessionId}>
-									<MusicArrowButton />
-									<ModalHintHall />
-									<ModalFriendCall
-										openModalFriend={quiz.openModalFriend}
-										onClose={quiz.hideModalFriend}
-										onConfirmAnswer={(answer) => {
-											quiz.checkIsCorrect(answer);
-											quiz.hideModal();
-										}}
-									/>
-									<Hints
-										setArrQuestion={quiz.setArrQuestion}
-										arrQuestions={quiz.arrQuestions}
-										numberQuestion={quiz.numberQuestion}
-										changeModal={quiz.changeModal}
-										showModalFriend={quiz.showModalFriend}
-										disabled={quiz.disabled}
-									/>
-									<Logo />
-									<WinRating />
-									<Card
-										redItem={quiz.redItem}
-										goldItem={quiz.goldItem}
-										checkIsCorrect={quiz.checkIsCorrect}
-										hideModal={quiz.hideModal}
-									/>
-								</div>
-							)}
+					<div className="block">
+						<div key={quiz.playSessionId}>
+							<MusicArrowButton />
+							<ModalHintHall />
+							<ModalFriendCall
+								openModalFriend={quiz.openModalFriend}
+								onClose={quiz.hideModalFriend}
+								onConfirmAnswer={(answer) => {
+									quiz.checkIsCorrect(answer);
+									quiz.hideModal();
+								}}
+							/>
+							<Hints
+								setArrQuestion={quiz.setArrQuestion}
+								arrQuestions={quiz.arrQuestions}
+								numberQuestion={quiz.numberQuestion}
+								changeModal={quiz.changeModal}
+								showModalFriend={quiz.showModalFriend}
+								disabled={quiz.disabled}
+							/>
+							<Logo />
+							<WinRating />
+							<Card redItem={quiz.redItem} goldItem={quiz.goldItem} checkIsCorrect={quiz.checkIsCorrect} hideModal={quiz.hideModal} />
 						</div>
-					)}
-					{quiz.isModalWin && <ModalWin onPlayAgain={quiz.restartGame} />}
+					</div>
 				</div>
 			</div>
 		</globalContext.Provider>
