@@ -10,15 +10,15 @@ import ModalFriendCall from './components/ModalFriendCall/ModalFriendCall';
 import IntroModalInfo from './components/IntroModalInfo/IntroModalInfo';
 import ModalLose from './components/ModalLose/ModalLose';
 import ModalWin from './components/ModalWin/ModalWin';
-import { useMobileViewport } from '@/hooks/useMobileViewport';
 import { useQuizGame } from '@/hooks/useQuizGame';
-
-/** Совпадает с `$trully-mobile-width` в `styles/_variables.scss`. */
-const MOBILE_VIEWPORT_MAX_PX = 800;
+import { useMobileViewport } from '@/hooks/useMobileViewport';
+import { LayoutWrapper } from '@/layouts/LayoutWrapper/LayoutWrapper';
 
 export default function App() {
-	const isMobile = useMobileViewport(MOBILE_VIEWPORT_MAX_PX);
 	const quiz = useQuizGame();
+	const containerClassName = !quiz.disabledAll ? 'container' : 'container disabled-all';
+	const MOBILE_VIEWPORT_MAX_PX = 800;
+	const isMobile = useMobileViewport(MOBILE_VIEWPORT_MAX_PX);
 
 	const contextValue: GlobalContextValue = {
 		numberQuestion: quiz.numberQuestion,
@@ -27,29 +27,19 @@ export default function App() {
 		isMobile,
 	};
 
-	const containerClassName = !quiz.disabledAll ? 'container' : 'container disabled-all';
-
 	if (quiz.isModalLose) {
 		return (
-			<globalContext.Provider value={contextValue}>
-				<div className="App">
-					<div className={containerClassName}>
-						<ModalLose onPlayAgain={quiz.restartGame} />
-					</div>
-				</div>
-			</globalContext.Provider>
+			<LayoutWrapper>
+				<ModalLose onPlayAgain={quiz.restartGame} />
+			</LayoutWrapper>
 		);
 	}
 
 	if (quiz.isModalWin) {
 		return (
-			<globalContext.Provider value={contextValue}>
-				<div className="App">
-					<div className={containerClassName}>
-						<ModalWin onPlayAgain={quiz.restartGame} />
-					</div>
-				</div>
-			</globalContext.Provider>
+			<LayoutWrapper>
+				<ModalWin onPlayAgain={quiz.restartGame} />
+			</LayoutWrapper>
 		);
 	}
 
